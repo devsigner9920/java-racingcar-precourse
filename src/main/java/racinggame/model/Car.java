@@ -3,25 +3,25 @@ package racinggame.model;
 import java.util.Objects;
 
 public class Car {
-  private final String name;
-  private int position;
+  private final Name name;
+  private Position position;
 
-  public Car(String name) {
+  public Car(Name name) {
     this.name = name;
-    position = 0;
+    position = new Position(0);
   }
 
   public String getName() {
-    return name;
+    return name.getName();
   }
 
   public int getPosition() {
-    return position;
+    return position.getPosition();
   }
 
   public void move(MovingStrategy movingStrategy) {
     if (movingStrategy.isMoving()) {
-      position++;
+      position.increment();
     }
   }
 
@@ -30,7 +30,7 @@ public class Car {
     if (this == o) return true;
     if (o == null || getClass() != o.getClass()) return false;
     Car car = (Car) o;
-    return position == car.position && name.equals(car.name);
+    return name.equals(car.name) && position.equals(car.position);
   }
 
   @Override
